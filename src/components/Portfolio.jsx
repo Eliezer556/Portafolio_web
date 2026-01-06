@@ -17,12 +17,14 @@ import {
   Globe,
   CodeXml,
   Braces,
+  PawPrint
 } from 'lucide-react';
 
 import IconReact from './icons/iconReact';
 import IconPython from './icons/iconPython';
 import IconCart from './icons/iconCart';
 import { ProjectDetails } from './ProjectDetails';
+import { PetsSocietyDetails } from './PetsSocietyDetails';
 import IconGit from './icons/iconGit';
 import IconPostgre from './icons/iconPostgre';
 
@@ -31,7 +33,6 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
   const [currentView, setCurrentView] = useState('portfolio')
 
-  // Detectar sección activa al hacer scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['inicio', 'sobre mi', 'habilidades', 'proyectos', 'contacto'];
@@ -70,21 +71,24 @@ export default function Portfolio() {
 
   const projects = [
     {
+      id: 'e-commerce',
       title: "E-commerce",
       desc: "Base de datos hecha en Postgresql, Bakend solido con Django rest_framework basado en APIs, con autenticacion JWT, consumo de servicios con Axios y Frontend hecho en React.",
-      tags: ["DRF", "React", "PostgreSQL","Fullstack"],
+      tags: ["DRF", "React", "PostgreSQL", "Fullstack"],
       icon: <IconCart size={24} />,
       isFeatured: true,
     },
     {
-      title: "En  proceso...",
-      desc: "...",
-      tags: ["React", "Tailwind", "Chart.js"],
-      icon: <Zap size={24} />,
-      isFeatured: false,
+      id: 'society-pets',
+      title: "Society Pets",
+      desc: "Plataforma integral para la adopción responsable y gestión de bienestar animal. Cuenta con autenticación segura, validaciones personalizadas, visualización de estadísticas y módulos de formación interactivos para dueños de mascotas.",
+      tags: ["Django", "Tailwind CSS", "JavaScript", "Python", "MySQLite"],
+      icon: <PawPrint size={24} />,
+      isFeatured: true,
     },
     {
-      title: "En  proceso...",
+      id: 'process',
+      title: "En proceso...",
       desc: "...",
       tags: ["Bash", "Linux", "Cron"],
       icon: <Terminal size={24} />,
@@ -92,25 +96,23 @@ export default function Portfolio() {
     }
   ];
 
-  if (currentView !== 'portfolio'){
-    return (
-      <ProjectDetails onBack={() => setCurrentView('portfolio')}/>
-    )
+  if (currentView === 'e-commerce') {
+    return <ProjectDetails onBack={() => setCurrentView('portfolio')} />;
+  }
+
+  if (currentView === 'society-pets') {
+    return <PetsSocietyDetails onBack={() => setCurrentView('portfolio')} />;
   }
 
   return (
     <div className="min-h-screen bg-[#0B0F19] text-slate-300 font-sans selection:bg-blue-500/30 selection:text-blue-200 overflow-x-hidden relative">
 
-      {/* --- BACKGROUND FX --- */}
-      {/* Grid Pattern */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
-      {/* Glowing Orbs */}
       <div className="fixed top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
       <div className="fixed bottom-[-10%] right-[-10%] w-[35vw] h-[35vw] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-      {/* --- FLOATING NAV --- */}
       <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-2xl">
         <div className="bg-slate-900/60 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 shadow-2xl flex justify-between items-center">
           <a href="#" className="text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">EM.</a>
@@ -131,13 +133,11 @@ export default function Portfolio() {
             <Mail size={14} /> <span>Hola</span>
           </a>
 
-          {/* Mobile Menu Toggle */}
           <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Dropdown */}
         {isMenuOpen && (
           <div className="absolute top-16 left-0 w-full bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col gap-2 md:hidden animate-in slide-in-from-top-2">
             {['Inicio', 'Sobre mi', 'Habilidades', 'Proyectos'].map((item) => (
@@ -154,7 +154,6 @@ export default function Portfolio() {
         )}
       </nav>
 
-      {/* --- HERO SECTION --- */}
       <section id="inicio" className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6 animate-fade-in-up">
           <span className="relative flex h-2 w-2">
@@ -187,11 +186,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- ABOUT & STATS GRID --- */}
       <section id="sobre mi" className="py-24 px-4 relative z-10">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-          {/* Text Content */}
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-white flex items-center gap-3">
               <span className="w-8 h-[2px] bg-blue-500"></span> Sobre Mí
@@ -211,7 +208,6 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Glass Card Graphic */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 rounded-2xl blur-xl opacity-20 transform rotate-3 scale-95"></div>
             <div className="relative bg-slate-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl">
@@ -237,7 +233,7 @@ export default function Portfolio() {
                     <p><span className="text-blue-400 font-bold">Usuario:</span> Eliezer Motta</p>
                     <p><span className="text-blue-400 font-bold">Roll:</span> Full Stack Dev</p>
                     <p><span className="text-blue-400 font-bold">Shell:</span> Bash / Warp</p>
-                    <p><span className="text-blue-400 font-bold">Stack:</span> Html, CSS, TailwindCSS, Javascript, Python, Django, Django rest_framework, React</p>
+                    <p><span className="text-blue-400 font-bold">Stack:</span> Html, CSS, TailwindCSS, Javascript, Python, Django, DRF, React</p>
                     <p><span className="text-blue-400 font-bold">Status:</span> Junior</p>
                   </div>
                 </div>
@@ -248,7 +244,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- SKILLS BENTO GRID --- */}
       <section id="habilidades" className="py-24 px-4 bg-slate-900/30">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
@@ -267,7 +262,6 @@ export default function Portfolio() {
               </div>
             ))}
 
-            {/* Additional visual "fillers" for the bento grid vibe */}
             <div className="col-span-2 md:col-span-2 p-6 bg-gradient-to-br from-blue-900/20 to-slate-900/50 border border-white/5 rounded-xl flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-white mb-1">Django Rest Framework</h3>
@@ -287,7 +281,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- PROJECTS --- */}
       <section id="proyectos" className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-12">
@@ -303,7 +296,6 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <div key={index} className="group relative bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-500">
-                {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 <div className="p-8 h-full flex flex-col relative z-10">
@@ -332,19 +324,13 @@ export default function Portfolio() {
                   <div>
                     {project.isFeatured ? (
                       <button
-                        onClick={() => setCurrentView('project-details')}
+                        onClick={() => setCurrentView(project.id)}
                         className="w-full mt-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2"
                       >
                         Ver Detalles Completos <ExternalLink size={14} />
                       </button>
-
                     ) : (
                       <div className='flex gap-4'>
-                        {/* <button
-                          className="w-full mt-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2"
-                        >
-                          Ver codigo <Github size={14} />
-                        </button> */}
                         <button
                           className="w-full mt-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2"
                         >
@@ -360,7 +346,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- CONTACT --- */}
       <section id="contacto" className="py-24 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/10 pointer-events-none"></div>
 
@@ -375,9 +360,6 @@ export default function Portfolio() {
               <Mail size={18} /> Enviar Correo
             </a>
             <div className="flex gap-4">
-              {/* <a href={profile.linkedin} className="p-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full transition-colors border border-white/10">
-                <Linkedin size={20} />
-              </a> */}
               <a href={profile.github} className="p-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full transition-colors border border-white/10">
                 <Github size={20} />
               </a>

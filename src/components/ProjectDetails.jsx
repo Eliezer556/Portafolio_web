@@ -19,7 +19,6 @@ const OptimizedImage = ({ src, alt }) => {
 
   return (
     <div className="relative w-full overflow-hidden bg-slate-800 aspect-video rounded-xl">
-      {/* Skeleton / Shimmer Effect: Solo se ve mientras carga */}
       {!isLoaded && (
         <div className="absolute inset-0 z-10 animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
       )}
@@ -27,8 +26,8 @@ const OptimizedImage = ({ src, alt }) => {
       <img
         src={src}
         alt={alt}
-        loading="lazy" // Carga diferida nativa del navegador
-        decoding="async" // Decodificación asíncrona para no bloquear el hilo principal
+        loading="lazy" 
+        decoding="async" 
         onLoad={() => setIsLoaded(true)}
         className={`w-full h-full object-cover transition-all duration-700 ${
           isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-105"
