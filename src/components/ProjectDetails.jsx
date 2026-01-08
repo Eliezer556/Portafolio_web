@@ -178,6 +178,15 @@ export const ProjectDetails = ({ onBack }) => {
                 <Github size={20} />
                 Ver Repositorio
               </a>
+              <a
+                href="https://e-commerce-nine-amber-50.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-blue-50 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              >
+                <ExternalLink size={20} />
+                Ver Demo
+              </a>
             </div>
           </div>
         </footer>
