@@ -25,6 +25,7 @@ import IconPython from './icons/iconPython';
 import IconCart from './icons/iconCart';
 import { ProjectDetails } from './ProjectDetails';
 import { PetsSocietyDetails } from './PetsSocietyDetails';
+import { ElectronicsDetails } from './ElectronicsDetails';
 import IconGit from './icons/iconGit';
 import IconPostgre from './icons/iconPostgre';
 
@@ -87,12 +88,12 @@ export default function Portfolio() {
       isFeatured: true,
     },
     {
-      id: 'process',
-      title: "En proceso...",
-      desc: "...",
-      tags: ["Bash", "Linux", "Cron"],
-      icon: <Terminal size={24} />,
-      isFeatured: false,
+      id: 'electronics',
+      title: "Sistema Gestión Electrónicos",
+      desc: "Sistema de inventario y ventas para tienda de electrónicos. Backend en Django (DRF, JWT) y frontend en React 19 con Vite y pnpm. CRUD completo, búsqueda/filtros y actualización de stock en tiempo real.",
+      tags: ["Django", "DRF", "React", "PostgreSQL", "JWT", "Vite"],
+      icon: <Cpu size={24} />,
+      isFeatured: true,
     }
   ];
 
@@ -102,6 +103,10 @@ export default function Portfolio() {
 
   if (currentView === 'society-pets') {
     return <PetsSocietyDetails onBack={() => setCurrentView('portfolio')} />;
+  }
+
+  if (currentView === 'electronics') { 
+    return <ElectronicsDetails onBack={() => setCurrentView('portfolio')} />;
   }
 
   return (
@@ -154,7 +159,7 @@ export default function Portfolio() {
         )}
       </nav>
 
-      <section id="inicio" className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+      <section id="inicio" className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 scroll-mt-24">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-6 animate-fade-in-up">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -163,16 +168,16 @@ export default function Portfolio() {
           Disponible para trabajar
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
           <span className="bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">{profile.name}</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-400 max-w-2xl leading-relaxed mb-8 font-light">
+        <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-6 font-light">
           Ingeniero de Software en formación. Desarrollador web Junior en<span className="text-blue-400 font-medium"> Backend</span> y <span className="text-violet-400 font-medium">Frontend moderno</span>.
         </p>
 
-        <div className="flex gap-4">
-          <a href="#proyectos" className="group relative px-6 py-3 rounded-lg bg-white text-slate-900 font-semibold hover:bg-slate-200 transition-all flex items-center gap-2">
+        <div className="flex gap-3">
+          <a href="#proyectos" className="group relative px-4 py-2 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-200 transition-all flex items-center gap-2">
             Ver Proyectos
             <ChevronDown size={18} className="group-hover:translate-y-1 transition-transform" />
           </a>
@@ -186,22 +191,22 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="sobre mi" className="py-24 px-4 relative z-10">
+      <section id="sobre mi" className="py-16 px-4 relative z-10 scroll-mt-24">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-white flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-3">
               <span className="w-8 h-[2px] bg-blue-500"></span> Sobre Mí
             </h2>
-            <p className="text-lg text-slate-400 leading-relaxed">
+            <p className="text-base text-slate-400 leading-relaxed">
               Soy estudiante de <strong className="text-white">8vo semestre de Ingeniería en Sistemas</strong> con un enfoque pragmático: el código debe ser limpio, eficiente y escalable.
             </p>
             <p className="text-lg text-slate-400 leading-relaxed">
               Mi viaje comenzó compilando código de python en la terminal hasta convertirse en desarrollo web y luego el desarrollo Full Stack. Me siento cómodo construyendo el bakend completo de un sistema web como el frontend para la experiencia de usuario óptima.
             </p>
-            <div className="pt-4 flex flex-wrap gap-3">
+            <div className="pt-3 flex flex-wrap gap-2">
               {['Responsable', 'Analítico', 'Autodidacta'].map(trait => (
-                <span key={trait} className="px-3 py-1 bg-slate-800/50 border border-slate-700 rounded text-sm text-slate-300">
+                <span key={trait} className="px-2 py-1 bg-slate-800/50 border border-slate-700 rounded text-xs text-slate-300">
                   {trait}
                 </span>
               ))}
@@ -244,17 +249,17 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="habilidades" className="py-24 px-4 bg-slate-900/30">
+      <section id="habilidades" className="py-16 px-4 bg-slate-900/30 scroll-mt-24">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">Stack Tecnológico</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-white mb-3">Stack Tecnológico</h2>
             <p className="text-slate-400">Herramientas que utilizo para dar vida a las ideas</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {skills.map((skill, idx) => (
-              <div key={idx} className="group p-6 bg-slate-800/20 hover:bg-slate-800/40 border border-white/5 hover:border-blue-500/30 rounded-xl transition-all duration-300 flex flex-col items-center justify-center gap-3 text-center">
-                <div className="p-3 bg-blue-500/10 rounded-lg text-blue-400 group-hover:scale-110 transition-transform duration-300">
+              <div key={idx} className="group p-4 bg-slate-800/20 hover:bg-slate-800/40 border border-white/5 hover:border-blue-500/30 rounded-lg transition-all duration-300 flex flex-col items-center justify-center gap-2 text-center">
+                <div className="p-2 bg-blue-500/10 rounded-md text-blue-400 group-hover:scale-110 transition-transform duration-300">
                   {skill.icon}
                 </div>
                 <h3 className="font-semibold text-slate-200">{skill.name}</h3>
@@ -262,7 +267,7 @@ export default function Portfolio() {
               </div>
             ))}
 
-            <div className="col-span-2 md:col-span-2 p-6 bg-gradient-to-br from-blue-900/20 to-slate-900/50 border border-white/5 rounded-xl flex items-center justify-between">
+            <div className="col-span-2 md:col-span-2 p-4 bg-gradient-to-br from-blue-900/20 to-slate-900/50 border border-white/5 rounded-lg flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-white mb-1">Django Rest Framework</h3>
                 <p className="text-sm text-slate-400">Especializado en APIs robustas</p>
@@ -270,7 +275,7 @@ export default function Portfolio() {
               <Database className="text-blue-500 opacity-50" size={40} />
             </div>
 
-            <div className="col-span-2 md:col-span-2 p-6 bg-gradient-to-br from-violet-900/20 to-slate-900/50 border border-white/5 rounded-xl flex items-center justify-between">
+            <div className="col-span-2 md:col-span-2 p-4 bg-gradient-to-br from-violet-900/20 to-slate-900/50 border border-white/5 rounded-lg flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-white mb-1">Frontend Moderno</h3>
                 <p className="text-sm text-slate-400">React + Tailwind CSS</p>
@@ -281,7 +286,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="proyectos" className="py-24 px-4">
+      <section id="proyectos" className="py-16 px-4 scroll-mt-24">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -293,28 +298,28 @@ export default function Portfolio() {
             </a>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {projects.map((project, index) => (
-              <div key={index} className="group relative bg-slate-900 border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-500">
+              <div key={index} onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); setCurrentView(project.id); }} role="button" tabIndex={0} className="group relative bg-slate-900 border border-white/10 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <div className="p-8 h-full flex flex-col relative z-10">
-                  <div className="mb-6 flex justify-between items-start">
+                <div className="p-6 h-full flex flex-col relative z-10">
+                  <div className="mb-4 flex justify-between items-start">
                     <div className="p-3 bg-slate-800 rounded-lg text-blue-400 group-hover:text-white group-hover:bg-blue-600 transition-colors duration-300">
                       {project.icon}
                     </div>
-                    <Github className="text-slate-600 hover:text-white cursor-pointer transition-colors" size={20} />
+                    <Github className="text-slate-600 hover:text-white cursor-pointer transition-colors" size={18} />
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
                     {project.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-white/5">
                     {project.tags.map(tag => (
                       <span key={tag} className="text-xs font-mono text-slate-500 bg-slate-800/50 px-2 py-1 rounded">
                         #{tag}
@@ -324,15 +329,15 @@ export default function Portfolio() {
                   <div>
                     {project.isFeatured ? (
                       <button
-                        onClick={() => setCurrentView(project.id)}
-                        className="w-full mt-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2"
+                        onClick={(e) => { e.stopPropagation(); window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); setCurrentView(project.id); }}
+                        className="w-full mt-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-md transition-all text-sm font-semibold flex items-center justify-center gap-2"
                       >
                         Ver Detalles Completos <ExternalLink size={14} />
                       </button>
                     ) : (
                       <div className='flex gap-4'>
                         <button
-                          className="w-full mt-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2"
+                          className="w-full mt-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-md transition-all text-sm font-semibold flex items-center justify-center gap-2"
                         >
                           Live demo <ExternalLink size={14} />
                         </button>
@@ -346,7 +351,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="contacto" className="py-24 px-4 relative">
+      <section id="contacto" className="py-16 px-4 relative scroll-mt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/10 pointer-events-none"></div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
