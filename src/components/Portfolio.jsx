@@ -17,7 +17,8 @@ import {
   Globe,
   CodeXml,
   Braces,
-  PawPrint
+  PawPrint,
+  Truck // Añadí Truck para el nuevo proyecto
 } from 'lucide-react';
 
 import IconReact from './icons/iconReact';
@@ -26,6 +27,7 @@ import IconCart from './icons/iconCart';
 import { ProjectDetails } from './ProjectDetails';
 import { PetsSocietyDetails } from './PetsSocietyDetails';
 import { ElectronicsDetails } from './ElectronicsDetails';
+import { DistributionDetails } from './DistributionDetails'; // 1. Importa el nuevo detalle
 import IconGit from './icons/iconGit';
 import IconPostgre from './icons/iconPostgre';
 
@@ -71,6 +73,15 @@ export default function Portfolio() {
   ];
 
   const projects = [
+    // 2. NUEVO PROYECTO AÑADIDO AL INICIO
+    {
+      id: 'distribution-system',
+      title: "Sistema Gestión Distribución",
+      desc: "Solución Full-Stack para optimizar la cadena de suministro: preventa, control de almacén con validación de rutas y módulos contables automáticos.",
+      tags: ["Django", "React", "PostgreSQL", "Logística"],
+      icon: <Truck size={24} />,
+      isFeatured: true,
+    },
     {
       id: 'e-commerce',
       title: "E-commerce",
@@ -82,7 +93,7 @@ export default function Portfolio() {
     {
       id: 'society-pets',
       title: "Society Pets",
-      desc: "Plataforma integral para la adopción responsable y gestión de bienestar animal. Cuenta con autenticación segura, validaciones personalizadas, visualización de estadísticas y módulos de formación interactivos para dueños de mascotas.",
+      desc: "Plataforma integral para la adopción responsable y gestión de bienestar animal. Cuenta con autenticación segura, validaciones personalizadas y visualización de estadísticas.",
       tags: ["Django", "Tailwind CSS", "JavaScript", "Python", "MySQLite"],
       icon: <PawPrint size={24} />,
       isFeatured: true,
@@ -90,12 +101,17 @@ export default function Portfolio() {
     {
       id: 'electronics',
       title: "Sistema Gestión Electrónicos",
-      desc: "Sistema de inventario y ventas para tienda de electrónicos. Backend en Django (DRF, JWT) y frontend en React 19 con Vite y pnpm. CRUD completo, búsqueda/filtros y actualización de stock en tiempo real.",
+      desc: "Sistema de inventario y ventas para tienda de electrónicos. Backend en Django (DRF, JWT) y frontend en React 19 con Vite. CRUD completo y actualización de stock en tiempo real.",
       tags: ["Django", "DRF", "React", "PostgreSQL", "JWT", "Vite"],
       icon: <Cpu size={24} />,
       isFeatured: true,
     }
   ];
+
+  // 3. LÓGICA DE VISTA PARA EL NUEVO PROYECTO
+  if (currentView === 'distribution-system') {
+    return <DistributionDetails onBack={() => setCurrentView('portfolio')} />;
+  }
 
   if (currentView === 'e-commerce') {
     return <ProjectDetails onBack={() => setCurrentView('portfolio')} />;
@@ -202,7 +218,7 @@ export default function Portfolio() {
               Soy estudiante de <strong className="text-white">8vo semestre de Ingeniería en Sistemas</strong> con un enfoque pragmático: el código debe ser limpio, eficiente y escalable.
             </p>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Mi viaje comenzó compilando código de python en la terminal hasta convertirse en desarrollo web y luego el desarrollo Full Stack. Me siento cómodo construyendo el bakend completo de un sistema web como el frontend para la experiencia de usuario óptima.
+              Mi viaje comenzó compilando código de python en la terminal hasta convertirse en desarrollo web Full Stack. Me siento cómodo construyendo tanto el backend completo de un sistema como el frontend para una experiencia de usuario óptima.
             </p>
             <div className="pt-3 flex flex-wrap gap-2">
               {['Responsable', 'Analítico', 'Autodidacta'].map(trait => (
@@ -298,7 +314,7 @@ export default function Portfolio() {
             </a>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {projects.map((project, index) => (
               <div key={index} onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); setCurrentView(project.id); }} role="button" tabIndex={0} className="group relative bg-slate-900 border border-white/10 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 cursor-pointer">
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -308,14 +324,13 @@ export default function Portfolio() {
                     <div className="p-3 bg-slate-800 rounded-lg text-blue-400 group-hover:text-white group-hover:bg-blue-600 transition-colors duration-300">
                       {project.icon}
                     </div>
-                    <Github className="text-slate-600 hover:text-white cursor-pointer transition-colors" size={18} />
                   </div>
 
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
                     {project.desc}
                   </p>
 
@@ -327,21 +342,13 @@ export default function Portfolio() {
                     ))}
                   </div>
                   <div>
-                    {project.isFeatured ? (
+                    {project.isFeatured && (
                       <button
                         onClick={(e) => { e.stopPropagation(); window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); setCurrentView(project.id); }}
                         className="w-full mt-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-md transition-all text-sm font-semibold flex items-center justify-center gap-2"
                       >
-                        Ver Detalles Completos <ExternalLink size={14} />
+                        Ver Detalles <ExternalLink size={14} />
                       </button>
-                    ) : (
-                      <div className='flex gap-4'>
-                        <button
-                          className="w-full mt-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 cursor-pointer text-blue-400 border border-blue-500/30 rounded-md transition-all text-sm font-semibold flex items-center justify-center gap-2"
-                        >
-                          Live demo <ExternalLink size={14} />
-                        </button>
-                      </div>
                     )}
                   </div>
                 </div>
@@ -357,7 +364,7 @@ export default function Portfolio() {
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">¿Listo para colaborar?</h2>
           <p className="text-slate-400 text-lg mb-10">
-            Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para ser parte de tus visiones.
+            Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tus visiones.
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
@@ -374,7 +381,7 @@ export default function Portfolio() {
       </section>
 
       <footer className="py-8 border-t border-white/5 text-center text-slate-600 text-sm">
-        <p>&copy; 2025 Eliezer Motta. Diseñado con React & Tailwind.</p>
+        <p>&copy; 2026 Eliezer Motta. Diseñado con React & Tailwind.</p>
       </footer>
     </div>
   );
