@@ -189,7 +189,7 @@ export default function Portfolio() {
         </h1>
 
         <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-6 font-light">
-          Ingeniero de Software en formación. Desarrollador web Junior en<span className="text-blue-400 font-medium"> Backend</span> y <span className="text-violet-400 font-medium">Frontend moderno</span>.
+          Ingeniero de Software en formación. Desarrollador y Arquitecto web<span className="text-blue-400 font-medium"> Backend</span> y <span className="text-violet-400 font-medium">Frontend moderno</span>.
         </p>
 
         <div className="flex gap-3">
@@ -255,7 +255,6 @@ export default function Portfolio() {
                     <p><span className="text-blue-400 font-bold">Roll:</span> Full Stack Dev</p>
                     <p><span className="text-blue-400 font-bold">Shell:</span> Bash / Warp</p>
                     <p><span className="text-blue-400 font-bold">Stack:</span> Html, CSS, TailwindCSS, Javascript, Python, Django, DRF, React</p>
-                    <p><span className="text-blue-400 font-bold">Status:</span> Junior</p>
                   </div>
                 </div>
               </div>
